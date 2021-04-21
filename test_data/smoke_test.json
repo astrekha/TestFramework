@@ -1,0 +1,39 @@
+{
+  "tests": [
+		{"test_name": "Check count of rows in table [hr].[countries]",
+		"test_type": "single",
+		 "expected_result": 25,
+		 "query": "SELECT COUNT(*) FROM [hr].[countries]"},
+
+		{"test_name": "Check count of rows in table [hr].[departments]",
+		 "test_type": "single",
+		 "expected_result": 11,
+		 "query": "SELECT COUNT(*) FROM [hr].[departments]"},
+
+		{"test_name": "Check count of rows in table [hr].[dependents]",
+		 "test_type": "single",
+		 "expected_result": 30,
+		 "query": "SELECT COUNT(*) FROM [hr].[dependents]"},
+
+		{"test_name": "Check count of rows in table [hr].[employees]",
+		"test_type": "single",
+		 "expected_result": 40,
+		 "query": "SELECT COUNT(*) FROM [hr].[employees]"},
+
+		{"test_name": "Check count of rows in table [hr].[jobs]",
+		"test_type": "single",
+		 "expected_result": 19,
+		 "query": "SELECT COUNT(*) FROM [hr].[jobs]"},
+
+		 {"test_name": "Check count of rows in table [hr].[locations]",
+		 "test_type": "single",
+		 "expected_result": 7,
+		 "query": "SELECT COUNT(*) FROM [hr].[locations]"},
+
+		 {"test_name": "Check count of rows in table [hr].[regions]",
+		 "test_type": "single",
+		 "expected_result": 4,
+		 "query": "SELECT COUNT(*) FROM [hr].[regions]"}
+
+]
+}

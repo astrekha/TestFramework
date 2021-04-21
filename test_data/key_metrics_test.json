@@ -1,0 +1,39 @@
+{
+  "tests": [
+		{"test_name": "Check metrics for [hr].[locations].[city] ",
+		"test_type": "row",
+		 "expected_result": "location_id, 7, 1400, 2700, 14000, 0",
+		 "query": "select 'location_id' as ColumnName, cast(count(location_id) as nvarchar(5)) as DistCount, cast(min(location_id)as nvarchar(5)) as Min_Value, cast(max(location_id)as nvarchar(5)) as MaxValue, cast(sum(location_id)as nvarchar(5)) as SumValue,  (select cast(count(*)as nvarchar(5))  from  hr.locations where location_id is null) as CntNulls from hr.locations"
+		},
+	  {"test_name": "Check metrics for [hr].[locations].[street_address] ",
+		"test_type": "row",
+		 "expected_result": "street_address, 7, 147 Spadina Ave, Schwanthalerstr. 7031, 143, 0",
+		 "query": "select 'street_address' as ColumnName, cast(count(street_address)as nvarchar(5)) as DistCount, min(street_address) as Min_Value, max(street_address) as MaxValue, cast(sum(len(street_address))as nvarchar(5)) as SumStrLength ,(select cast(count(*)as nvarchar(5))  from  hr.locations where street_address is null) as CntNulls from hr.locations"
+	  },
+
+	  {"test_name": "Check metrics for [hr].[locations].[postal_code] ",
+		"test_type": "row",
+		 "expected_result": "postal_code, 6, 26192, OX9 9ZB, 34, 1",
+		 "query": "select 'postal_code' as ColumnName, cast(count(postal_code)as nvarchar(5)) as DistCount, min(postal_code) as Min_Value, max(postal_code) as MaxValue, cast(sum(len(postal_code))as nvarchar(5)) as SumStrLength ,(select cast(count(*)as nvarchar(5))  from  hr.locations where postal_code is null) as CntNulls from hr.locations"
+	  },
+
+	  {"test_name": "Check metrics for [hr].[locations].[city] ",
+		"test_type": "row",
+		 "expected_result": "city, 7, London, Toronto, 60, 0",
+		 "query": "select 'city' as ColumnName, cast(count(city)as nvarchar(5)) as DistCount, min(city) as Min_Value, max(city) as MaxValue, cast(sum(len(city))as nvarchar(5)) as SumStrLength ,(select cast(count(*)as nvarchar(5))  from  hr.locations where city is null) as CntNulls from hr.locations"
+	  },
+
+	  {"test_name": "Check metrics for [hr].[locations].[state_province] ",
+		"test_type": "row",
+		 "expected_result": "state_province, 6, Bavaria, Washington, 45, 1",
+		 "query": "select 'state_province' as ColumnName, cast(count(state_province)as nvarchar(5)) as DistCount, min(state_province) as Min_Value, max(state_province) as MaxValue, cast(sum(len(state_province))as nvarchar(5)) as SumStrLength ,(select cast(count(*)as nvarchar(5))  from  hr.locations where state_province is null) as CntNulls from hr.locations"
+	  },
+
+	  {"test_name": "Check metrics for [hr].[locations].[country_id] ",
+		"test_type": "row",
+		 "expected_result": "country_id, 7, CA, US, 14, 0",
+		 "query": "select 'country_id' as ColumnName, cast(count(country_id)as nvarchar(5)) as DistCount, min(country_id) as Min_Value, max(country_id) as MaxValue, cast(sum(len(country_id))as nvarchar(5)) as SumStrLength ,(select cast(count(*)as nvarchar(5))  from  hr.locations where country_id is null) as CntNulls from hr.locations"
+	  }
+
+    ]
+}

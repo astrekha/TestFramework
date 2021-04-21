@@ -1,0 +1,13 @@
+{
+  "dev": {
+    "server_name": "(local)\SQLEXPRESS",
+    "db_name": "TRN",
+    "test_data_folder": "test_data"
+  },
+
+  "uat": {
+    "server_name": "(local)\SQLEXPRESS",
+    "db_name": "TRN_uat",
+    "test_data_folder": "test_data"
+  }
+}

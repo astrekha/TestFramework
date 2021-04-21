@@ -1,0 +1,86 @@
+
+
+Testing of test_data\consistency_test.json was started
+
+
+Test case 'Check consistency between tables hr.countries and hr.locations (1:M)'
+PASS. Result is 'CONSISTENT' as expected
+	Query: select case  when (select distinct country_id from hr.locations except select country_id from hr.countries) is null then 'CONSISTENT' else 'NOT CONSISTENT' end as Consistency_check_bw_countries_locations
+
+Test case 'Check consistency between tables hr.locations and hr.departments (1:M)'
+PASS. Result is 'CONSISTENT' as expected
+	Query: select case when (select distinct location_id from hr.departments except select location_id from hr.locations) is null then 'CONSISTENT' else 'NOT CONSISTENT' end as Consistency_check_bw_locations_departments
+
+Test case 'Check consistency between tables hr.regions and hr.countries table (1:M)'
+PASS. Result is 'CONSISTENT' as expected
+	Query: select case when (select distinct region_id from hr.countries except select region_id from hr.regions) is null then 'CONSISTENT' else 'NOT CONSISTENT' end as Consistency_check_bw_regions_countries
+
+Test case 'Check consistency between tables hr.departments and hr.employees (1:M)'
+PASS. Result is 'CONSISTENT' as expected
+	Query: select case when (select distinct department_id from hr.employees except select department_id from hr.departments) is null then 'CONSISTENT' else 'NOT CONSISTENT' end as Consistency_check_bw_departments_employees
+
+Test case 'Check consistency between tables hr.jobs and hr.employees (1:M)'
+PASS. Result is 'CONSISTENT' as expected
+	Query: select case when (select distinct job_id from hr.employees except select job_id from hr.jobs) is null then 'CONSISTENT' else 'NOT CONSISTENT' end as Consistency_check_bw_jobs_employees
+
+Test case 'Check consistency between tables hr.employees and hr.dependents (1:M)'
+PASS. Result is 'CONSISTENT' as expected
+	Query: select case when (select distinct employee_id from hr.dependents except select employee_id from hr.employees) is null then 'CONSISTENT' else 'NOT CONSISTENT' end as Consistency_check_bw_epmloyees_dependents
+
+Testing of test_data\key_metrics_test.json was started
+
+
+Test case 'Check metrics for [hr].[locations].[city] '
+PASS. Result is 'location_id, 7, 1400, 2700, 14000, 0' as expected
+	Query: select 'location_id' as ColumnName, cast(count(location_id) as nvarchar(5)) as DistCount, cast(min(location_id)as nvarchar(5)) as Min_Value, cast(max(location_id)as nvarchar(5)) as MaxValue, cast(sum(location_id)as nvarchar(5)) as SumValue,  (select cast(count(*)as nvarchar(5))  from  hr.locations where location_id is null) as CntNulls from hr.locations
+
+Test case 'Check metrics for [hr].[locations].[street_address] '
+PASS. Result is 'street_address, 7, 147 Spadina Ave, Schwanthalerstr. 7031, 143, 0' as expected
+	Query: select 'street_address' as ColumnName, cast(count(street_address)as nvarchar(5)) as DistCount, min(street_address) as Min_Value, max(street_address) as MaxValue, cast(sum(len(street_address))as nvarchar(5)) as SumStrLength ,(select cast(count(*)as nvarchar(5))  from  hr.locations where street_address is null) as CntNulls from hr.locations
+
+Test case 'Check metrics for [hr].[locations].[postal_code] '
+PASS. Result is 'postal_code, 6, 26192, OX9 9ZB, 34, 1' as expected
+	Query: select 'postal_code' as ColumnName, cast(count(postal_code)as nvarchar(5)) as DistCount, min(postal_code) as Min_Value, max(postal_code) as MaxValue, cast(sum(len(postal_code))as nvarchar(5)) as SumStrLength ,(select cast(count(*)as nvarchar(5))  from  hr.locations where postal_code is null) as CntNulls from hr.locations
+
+Test case 'Check metrics for [hr].[locations].[city] '
+PASS. Result is 'city, 7, London, Toronto, 60, 0' as expected
+	Query: select 'city' as ColumnName, cast(count(city)as nvarchar(5)) as DistCount, min(city) as Min_Value, max(city) as MaxValue, cast(sum(len(city))as nvarchar(5)) as SumStrLength ,(select cast(count(*)as nvarchar(5))  from  hr.locations where city is null) as CntNulls from hr.locations
+
+Test case 'Check metrics for [hr].[locations].[state_province] '
+PASS. Result is 'state_province, 6, Bavaria, Washington, 45, 1' as expected
+	Query: select 'state_province' as ColumnName, cast(count(state_province)as nvarchar(5)) as DistCount, min(state_province) as Min_Value, max(state_province) as MaxValue, cast(sum(len(state_province))as nvarchar(5)) as SumStrLength ,(select cast(count(*)as nvarchar(5))  from  hr.locations where state_province is null) as CntNulls from hr.locations
+
+Test case 'Check metrics for [hr].[locations].[country_id] '
+PASS. Result is 'country_id, 7, CA, US, 14, 0' as expected
+	Query: select 'country_id' as ColumnName, cast(count(country_id)as nvarchar(5)) as DistCount, min(country_id) as Min_Value, max(country_id) as MaxValue, cast(sum(len(country_id))as nvarchar(5)) as SumStrLength ,(select cast(count(*)as nvarchar(5))  from  hr.locations where country_id is null) as CntNulls from hr.locations
+
+Testing of test_data\smoke_test.json was started
+
+
+Test case 'Check count of rows in table [hr].[countries]'
+PASS. Result is '25' as expected
+	Query: SELECT COUNT(*) FROM [hr].[countries]
+
+Test case 'Check count of rows in table [hr].[departments]'
+PASS. Result is '11' as expected
+	Query: SELECT COUNT(*) FROM [hr].[departments]
+
+Test case 'Check count of rows in table [hr].[dependents]'
+PASS. Result is '30' as expected
+	Query: SELECT COUNT(*) FROM [hr].[dependents]
+
+Test case 'Check count of rows in table [hr].[employees]'
+PASS. Result is '40' as expected
+	Query: SELECT COUNT(*) FROM [hr].[employees]
+
+Test case 'Check count of rows in table [hr].[jobs]'
+PASS. Result is '19' as expected
+	Query: SELECT COUNT(*) FROM [hr].[jobs]
+
+Test case 'Check count of rows in table [hr].[locations]'
+PASS. Result is '7' as expected
+	Query: SELECT COUNT(*) FROM [hr].[locations]
+
+Test case 'Check count of rows in table [hr].[regions]'
+PASS. Result is '4' as expected
+	Query: SELECT COUNT(*) FROM [hr].[regions]

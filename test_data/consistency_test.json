@@ -1,0 +1,40 @@
+{
+  "tests": [
+    {
+      "test_name": "Check consistency between tables hr.countries and hr.locations (1:M)",
+      "test_type": "single",
+      "expected_result": "CONSISTENT",
+      "query": "select case  when (select distinct country_id from hr.locations except select country_id from hr.countries) is null then 'CONSISTENT' else 'NOT CONSISTENT' end as Consistency_check_bw_countries_locations"
+    },
+    {
+      "test_name": "Check consistency between tables hr.locations and hr.departments (1:M)",
+      "test_type": "single",
+      "expected_result": "CONSISTENT",
+      "query": "select case when (select distinct location_id from hr.departments except select location_id from hr.locations) is null then 'CONSISTENT' else 'NOT CONSISTENT' end as Consistency_check_bw_locations_departments"
+    },
+    {
+      "test_name": "Check consistency between tables hr.regions and hr.countries table (1:M)",
+      "test_type": "single",
+      "expected_result": "CONSISTENT",
+      "query": "select case when (select distinct region_id from hr.countries except select region_id from hr.regions) is null then 'CONSISTENT' else 'NOT CONSISTENT' end as Consistency_check_bw_regions_countries"
+    },
+    {
+      "test_name": "Check consistency between tables hr.departments and hr.employees (1:M)",
+      "test_type": "single",
+      "expected_result": "CONSISTENT",
+      "query": "select case when (select distinct department_id from hr.employees except select department_id from hr.departments) is null then 'CONSISTENT' else 'NOT CONSISTENT' end as Consistency_check_bw_departments_employees"
+    },
+    {
+      "test_name": "Check consistency between tables hr.jobs and hr.employees (1:M)",
+      "test_type": "single",
+      "expected_result": "CONSISTENT",
+      "query": "select case when (select distinct job_id from hr.employees except select job_id from hr.jobs) is null then 'CONSISTENT' else 'NOT CONSISTENT' end as Consistency_check_bw_jobs_employees"
+    },
+    {
+      "test_name": "Check consistency between tables hr.employees and hr.dependents (1:M)",
+      "test_type": "single",
+      "expected_result": "CONSISTENT",
+      "query": "select case when (select distinct employee_id from hr.dependents except select employee_id from hr.employees) is null then 'CONSISTENT' else 'NOT CONSISTENT' end as Consistency_check_bw_epmloyees_dependents"
+    }
+  ]
+}
