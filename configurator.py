@@ -31,6 +31,4 @@ class Configurator:
             print("'test_data_folder' parameter is missed")
             exit()
 
-
-
-
+    # this is a Feature 3 comment
